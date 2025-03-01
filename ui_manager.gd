@@ -11,19 +11,15 @@ extends Control
 
 func _ready() -> void:
 	SignalHandler.connect("update_state", _on_update_state)
-	SignalHandler.connect("update_jumps", _on_update_jumps)
-	SignalHandler.connect("update_dashes", _on_update_dashes)
 	SignalHandler.connect("dash_ready", _on_dash_ready)
+	SignalHandler.connect("update_stamina", _on_update_stamina)
+	
 	
 func _on_update_state(new_state: String) -> void:
 	state_name_label.text = new_state
 
-func _on_update_jumps(jump_count: int) -> void:
-	jump_label.text = "Jumps: " + str(jump_count)
-
-		
-func _on_update_dashes(dash_count: int) -> void:
-	dash_label.text = "Dashes: " + str(dash_count)
+func _on_update_stamina(stamina: float) -> void:
+	jump_label.text = str(stamina)
 	
 func _on_dash_ready(cooldown_pct: float) -> void:
 	dash_ready_label.text = str(cooldown_pct)
