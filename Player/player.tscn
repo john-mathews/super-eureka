@@ -1,0 +1,340 @@
+[gd_scene load_steps=28 format=3 uid="uid://btra7numve5ug"]
+
+[ext_resource type="Script" uid="uid://duh2cwif1sjon" path="res://Player/player.gd" id="1_onrkg"]
+[ext_resource type="Script" uid="uid://boo2pfvf066ha" path="res://Player/Player_States/player_state_manager.gd" id="6_2hs0m"]
+[ext_resource type="Script" uid="uid://bwys68egrup5t" path="res://Player/Player_States/idle.gd" id="7_606se"]
+[ext_resource type="Script" uid="uid://pbyewvg7j4vj" path="res://Player/Player_States/run.gd" id="8_u1c27"]
+[ext_resource type="Script" uid="uid://c6llw1ygsx2oq" path="res://Player/Player_States/jump.gd" id="9_op7ga"]
+[ext_resource type="Script" uid="uid://grnjvnaighgw" path="res://Player/Player_States/fall.gd" id="10_q13i1"]
+[ext_resource type="Script" uid="uid://c366m25r4psjr" path="res://Player/Player_Combat/attack.gd" id="11_pylmc"]
+[ext_resource type="Script" uid="uid://csyswytgqskw6" path="res://Player/Player_Combat/air_attack.gd" id="12_pbfsw"]
+[ext_resource type="Script" uid="uid://511llmf1po54" path="res://Player/Player_States/climb.gd" id="13_5tmop"]
+[ext_resource type="Script" uid="uid://bd7xs5w4irw8x" path="res://Player/Player_States/air_idle.gd" id="13_n471f"]
+[ext_resource type="Script" uid="uid://5wxs2m4p24xg" path="res://Player/Player_States/wall_jump.gd" id="14_7ahtn"]
+[ext_resource type="Script" uid="uid://bpt67wjtyff2g" path="res://Player/Player_States/air_strafe.gd" id="14_o28un"]
+[ext_resource type="Script" uid="uid://63ibukie8us7" path="res://Player/Player_States/wall_slide.gd" id="15_7lmhl"]
+[ext_resource type="Script" uid="uid://cgpyix2g2pq4p" path="res://Player/Player_Combat/player_combat_manager.gd" id="15_pisgm"]
+[ext_resource type="Script" uid="uid://uniwgbufse8v" path="res://Player/Player_States/die.gd" id="16_op7ga"]
+[ext_resource type="Script" uid="uid://cpqu81v2g1qtm" path="res://Player/Player_States/wall_hold.gd" id="17_n471f"]
+[ext_resource type="Script" uid="uid://dr6jqi14wd1k7" path="res://Player/Player_States/dash.gd" id="17_q13i1"]
+[ext_resource type="Script" uid="uid://df06aw7lkx2fs" path="res://Player/Player_Combat/ground_attack.gd" id="18_o28un"]
+[ext_resource type="Script" uid="uid://niwkg28uy8c3" path="res://Player/Player_Combat/wall_attack.gd" id="19_n471f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sweqy"]
+
+[sub_resource type="Animation" id="Animation_n471f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("parts/hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("parts/hand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("parts/body:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("parts/body:polygon")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)]
+}
+
+[sub_resource type="Animation" id="Animation_8mwp6"]
+resource_name = "dash"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("parts/body:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.00532076, 0.05, 0.1, 0.49, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10), PackedVector2Array(-17.5, -12, 10, -10, 10, 10, -20, 10.5, -7, 6.5, -20.5, 5.5, -6.5, 1, -18, -1.5, -7.5, -4.5, -15, -7.5, -8, -8.5), PackedVector2Array(-23.5, -16, 10, -10, 10, 10, -25, 15, -7, 6.5, -24, 4, -6.5, 1, -21, -3, -7.5, -4.5, -24, -9, -8, -8.5), PackedVector2Array(-23.5, -16, 10, -10, 10, 10, -25, 15, -7, 6.5, -24, 4, -6.5, 1, -21, -3, -7.5, -4.5, -24, -9, -8, -8.5), PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("parts/hand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-6, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("parts/hand:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5708]
+}
+
+[sub_resource type="Animation" id="Animation_hshwv"]
+resource_name = "falling"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("parts/hand:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.20266, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [2.96706, 3.14159, 3.31613, 2.96706]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("parts/hand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-3, -6), Vector2(0, -8), Vector2(3, -4), Vector2(-3, -6)]
+}
+
+[sub_resource type="Animation" id="Animation_7emwf"]
+resource_name = "idle"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("parts/hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 2), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("parts/hand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_gpjlu"]
+resource_name = "jump"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("parts/hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("parts/hand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_o28un"]
+resource_name = "run"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("parts/hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.00266038, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 3), Vector2(5, 5), Vector2(0, 7), Vector2(-4, 6), Vector2(0, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("parts/hand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.595157, 0.0, 0.628319, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("parts/body:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -2), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n471f"]
+_data = {
+&"RESET": SubResource("Animation_n471f"),
+&"dash": SubResource("Animation_8mwp6"),
+&"falling": SubResource("Animation_hshwv"),
+&"idle": SubResource("Animation_7emwf"),
+&"jump": SubResource("Animation_gpjlu"),
+&"run": SubResource("Animation_o28un")
+}
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_onrkg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_sweqy")
+
+[node name="parts" type="Node2D" parent="."]
+
+[node name="body" type="Polygon2D" parent="parts"]
+color = Color(0.984314, 0.756863, 0.0784314, 1)
+polygon = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+uv = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+
+[node name="mouth" type="Polygon2D" parent="parts/body"]
+position = Vector2(9, 1)
+color = Color(0.152591, 0.609943, 0.650077, 1)
+polygon = PackedVector2Array(-2, -1, 1, -1, 1, 1, -3, 1)
+uv = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+
+[node name="eye" type="Polygon2D" parent="parts/body"]
+position = Vector2(6, -6)
+color = Color(0.152591, 0.609943, 0.650077, 1)
+polygon = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
+uv = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+
+[node name="hand" type="Polygon2D" parent="parts"]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-4, 0, 3.5, 0, 3.5, 5.5, 2, 5.5, 2, 3, 1, 3, 1, 5.5, 0, 5.5, 0, 3, -1, 3, -1, 5.5, -2, 5.5, -2, 3, -3, 3, -3, 5.5, -4, 5.5)
+uv = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+
+[node name="PlayerStateManager" type="Node" parent="."]
+script = ExtResource("6_2hs0m")
+
+[node name="Climb" type="Node" parent="PlayerStateManager"]
+script = ExtResource("13_5tmop")
+
+[node name="Dash" type="Node" parent="PlayerStateManager"]
+script = ExtResource("17_q13i1")
+
+[node name="Die" type="Node" parent="PlayerStateManager"]
+script = ExtResource("16_op7ga")
+
+[node name="Fall" type="Node" parent="PlayerStateManager"]
+script = ExtResource("10_q13i1")
+
+[node name="Air_Idle" type="Node" parent="PlayerStateManager/Fall"]
+script = ExtResource("13_n471f")
+
+[node name="Air_Strafe" type="Node" parent="PlayerStateManager/Fall"]
+script = ExtResource("14_o28un")
+
+[node name="Idle" type="Node" parent="PlayerStateManager"]
+script = ExtResource("7_606se")
+
+[node name="Jump" type="Node" parent="PlayerStateManager"]
+script = ExtResource("9_op7ga")
+
+[node name="Air_Strafe" type="Node" parent="PlayerStateManager/Jump"]
+script = ExtResource("14_o28un")
+
+[node name="Run" type="Node" parent="PlayerStateManager"]
+script = ExtResource("8_u1c27")
+
+[node name="Wall_Hold" type="Node" parent="PlayerStateManager"]
+script = ExtResource("17_n471f")
+
+[node name="Wall_Jump" type="Node" parent="PlayerStateManager"]
+script = ExtResource("14_7ahtn")
+
+[node name="Wall_Slide" type="Node" parent="PlayerStateManager"]
+script = ExtResource("15_7lmhl")
+
+[node name="PlayerCombatManager" type="Node" parent="."]
+script = ExtResource("15_pisgm")
+
+[node name="Attack" type="Node" parent="PlayerCombatManager"]
+script = ExtResource("11_pylmc")
+
+[node name="Air_Attack" type="Node" parent="PlayerCombatManager/Attack"]
+script = ExtResource("12_pbfsw")
+
+[node name="Ground_Attack" type="Node" parent="PlayerCombatManager/Attack"]
+script = ExtResource("18_o28un")
+
+[node name="Wall_Attack" type="Node" parent="PlayerCombatManager/Attack"]
+script = ExtResource("19_n471f")
+
+[node name="animations" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_n471f")
+}
